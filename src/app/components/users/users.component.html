@@ -1,0 +1,209 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Responsive Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="content">
+    <div class="header" style="background: #fafafa; margin-bottom: 20px;">
+      <div class="titulo">
+        <h1>Usuarios</h1>
+    </div>
+    <mat-form-field appearance="standard">
+        <mat-label>Busqueda</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ronald" #input>
+      </mat-form-field>
+      <div class="buttons">
+        <button type="button" class="crear"
+          data-bs-toggle="modal" data-bs-target="#modalRegistrarUs">Agregar</button>
+        </div>
+    </div>
+      <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Carnet </th>
+          <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Nombre</th>
+          <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header>  Apellido </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Correo Electronico </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="password">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Rol</th>
+          <td mat-cell *matCellDef="let element" > {{element.role}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="loan">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Prestamos</th>
+          <td mat-cell *matCellDef="let element" > {{element.record}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="butons">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Acciones</th>
+          <td mat-cell *matCellDef="let element"  style="text-align: center;" > 
+            <button type="button" class="editar" (click)="getUserId(element._id)"
+             data-bs-toggle="modal" data-bs-target="#modalEditarUsuario">Editar</button>
+             <button type="button"class="eliminar" id="crud"
+             data-bs-toggle="modal" data-bs-target="#modalEliminarUsuario" (click)="getUserId(element._id)">Eliminar</button>
+           
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[6,12,18]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+    </div>
+  </div>
+
+
+</body>
+
+<!--Editar Usuario-->
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"  style="background-color: #424642;">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px; color:#fafafa; ">Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputEmail"
+            name="name" #name="ngModel" [(ngModel)]="userModel.name">
+          </div>
+          <div class="mb-3">
+          <label for="inputEmail" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="inputEmail"
+          name="lastName" #lasName="ngModel" [(ngModel)]="userModel.lastName">
+        </div>
+          <div class="mb-3">
+            <label for="inputUsuario" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="inputUsuario"
+            name="user" #user="ngModel" [(ngModel)]="userModel.user">
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail"
+            name="email" #email="ngModel" [(ngModel)]="userModel.email">
+          </div>  
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Contraseña</label>
+            <input type="text" class="form-control" id="inputEmail"
+            name="password" #password="ngModel" [(ngModel)]="userModel.password">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="background-color: #424642;" >
+        <button type="button" class="nulo" data-bs-dismiss="modal">cerrar</button>
+        <button type="button" class="editar" data-bs-dismiss="modal"  (click)="editUsers()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal Eliminar Usuario -->
+<div class="modal fade" id="modalEliminarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"  style="background-color: #424642;">
+        <h5 class="modal-title" id="exampleModalLabel"  style="font-size: 20px; color:#fafafa; ">Eliminar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de que desea eliminar el Usuario: {{ userModel.user }}?
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="nulo" data-bs-dismiss="modal">No</button>
+        <button type="button" class="eliminar" data-bs-dismiss="modal"
+        (click)="deleteUsers(userModel._id)">Si, eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Registrar un nuevo usuario-->
+<div class="modal fade" id="modalRegistrarUs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #fafafa; ">
+      <div class="modal-header"  style="background-color: #424642; ">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px; color:#fafafa; ">Registar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Carnet</label>
+            <input type="text" class="form-control" id="inputEmail"
+            name="id" #id="ngModel" [(ngModel)]="userModel.id">
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputEmail"
+            name="name" #name="ngModel" [(ngModel)]="userModel.name">
+          </div>
+          <div class="mb-3">
+          <label for="inputEmail" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="inputEmail"
+          name="lastName" #lasName="ngModel" [(ngModel)]="userModel.lastName">
+        </div>
+          <div class="mb-3">
+            <label for="inputUsuario" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="inputUsuario"
+            name="user" #user="ngModel" [(ngModel)]="userModel.user">
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail"
+            name="email" #email="ngModel" [(ngModel)]="userModel.email">
+          </div>  
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Contraseña</label>
+            <input type="text" class="form-control" id="inputEmail"
+            name="password" #password="ngModel" [(ngModel)]="userModel.password">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer"  style="background-color: #424642; ">
+        <button type="button" class="nulo" data-bs-dismiss="modal">cerrar</button>
+        <button type="button" class="crear" data-bs-dismiss="modal"  (click)="registerUsers()">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>

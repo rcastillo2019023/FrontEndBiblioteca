@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <div class="wrapper">
+    <header>Login</header>
+    <form action="#">
+      <div class="field email">
+        <div class="input-area">
+          <input type="text" placeholder="Nombre de Usuario" name="user" #user="ngModel" [(ngModel)]="userModel.user">
+          <i class="icon fas fa-envelope"></i>
+        </div>
+      </div>
+      <div class="field password">
+        <div class="input-area">
+          <input type="password" placeholder="contraseña" name="password" #password="ngModel" [(ngModel)]="userModel.password">
+          <i class="icon fas fa-lock"></i>
+        </div>
+      </div>
+      <div class="pass-txt"><a href="#">Olvidaste tu contraseña?</a></div>
+      <input  (click)="login()" type="submit" value="Iniciar Sesion">
+    </form>
+    <div class="sign-txt">No tienes cuenta? <a href="#">Registrate</a></div>
+  </div>
+
+</body>
+</html>

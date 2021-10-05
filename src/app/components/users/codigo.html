@@ -1,0 +1,45 @@
+	
+  <div class="content">
+    <div class="header">
+    <div class="titulo">
+        <h1>USUARIOS</h1>
+    </div>
+    <div class="buttons">
+    <button type="button" class="crear"
+      data-bs-toggle="modal" data-bs-target="#modalRegistrarUs">Agregar</button>
+    </div>
+    
+</div >
+<table class="table">
+  <thead>
+      <tr class="columnas">
+       <th>Carnet</th>
+       <th>Nombre</th>
+       <th>Apellido</th>
+       <th>Email</th>
+       <th>Prestamos</th>
+     <th>Acciones</th>
+      </tr> 
+  </thead>
+  <tbody>
+        <tr *ngFor="let usua of users">
+              <td data-label="Carnet/CUI: "> {{ usua.id}}</td>
+              <td data-label="Usuario: "> {{ usua.user}}</td>
+              <td data-label="Nombre: "> {{ usua.lastName}}</td>
+              <td data-label="Email: "> {{ usua.email}}</td>
+              <td data-label="Prestamo: "> {{ usua.record}}</td>
+          <td data-label="Acciones">
+           <div class="" aria-label="Basic example">
+             <button type="button" class="editar" (click)="getUserId(usua._id)"
+             data-bs-toggle="modal" data-bs-target="#modalEditarUsuario">Editar</button>
+             <button type="button"class="eliminar" id="crud"
+             data-bs-toggle="modal" data-bs-target="#modalEliminarUsuario" (click)="getUserId(usua._id)">Eliminar</button>
+     
+           </div>
+         </td>
+        </tr>
+  </tbody>
+</table>
+
+   <tr></tr>
+</div>

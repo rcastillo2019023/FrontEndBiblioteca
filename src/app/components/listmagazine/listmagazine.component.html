@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<main>
+  <div class="con-titulo">
+    <h2 class="titulo">Revistas</h2>
+  </div>
+  <div class="card-group">
+    
+    <div  class="contenedor" *ngFor="let bo of magazines">
+      <div *ngIf="bo.available > 0">
+        <div class="car">
+      <img src="../../../assets/img/magazine.png" class="card-img-top" alt="...">
+      <div class="car-body">
+        <h5 class="card-title" style="font-size: 20px;">{{bo.title}}</h5>
+        <p class="card-text"  style="font-size: 20px; ">{{bo.author}}</p>
+        <section class="butons">
+          <button  class="btn"
+          data-bs-toggle="modal" data-bs-target="#modalVerMas" (click)="getMagazineId(bo._id)">ver mas</button>
+          </section>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+  </div>
+</main>
+    
+</body>
+</html>
+  <!-- Modal Eliminar Usuario -->
+  <div class="modal fade" id="modalVerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #fafafa; ">
+        <div class="modal-header"  style="background-color: #424642; ">
+          <h5 class="modal-title" id="exampleModalLabel"  style="font-size: 20px; color:#fafafa; ">Detalles del libro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                <strong>Titulo:</strong> {{ magazineModel.title }}
+                </div>
+                <div class="mb-3">
+                <strong>Autor:</strong> {{magazineModel.author}}
+                </div>
+                <div class="mb-3">
+                <strong>Descripcion:</strong> {{magazineModel.description}}
+                </div>
+                <div class="mb-3">
+                <strong>Palabras:</strong> {{magazineModel.keywords}}
+                </div>
+                
+                <div class="mb-3">
+                <strong>Temas:</strong> {{magazineModel.topics}}        
+                </div>
+                <div class="mb-3">
+                <strong>Disponibles:</strong> {{magazineModel.available}}
+                </div>
+              </form>    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="nulo" data-bs-dismiss="modal">Regresar</button>
+          <button type="button" class="eliminar" data-bs-dismiss="modal"
+          (click)="lendMagazine(magazineModel._id)">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>

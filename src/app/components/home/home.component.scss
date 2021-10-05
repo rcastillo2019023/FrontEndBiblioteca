@@ -1,0 +1,134 @@
+form{
+  min-height: 100vh;
+  padding: 0 9%;
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+  background: #fff;
+  margin: 0px auto ;
+}
+
+.inicio{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.inicio .image img{
+  width: 30vw;
+  animation: float 3s linear infinite ;
+  height: 30vw;
+  margin-left: 80px;
+}
+
+@keyframes float {
+  0%, 100%{
+      transform: translateY(0rem);
+
+  }
+  50%{
+      transform: translateY(-1.5rem);
+  }
+}
+
+.inicio .content h3 span:first-child{
+  margin-right: 20px;
+  text-align: center;
+  font-size: 4.5rem;
+  color: #C06014;
+  text-transform: uppercase;
+}
+
+
+.inicio .content h3 span{
+  color: #424642;
+  font-size: 3rem;
+  
+}
+
+.inicio .content p{
+  text-align: justify;
+  font-size: 1.5rem;
+  color: #536162;
+  padding: 1rem 0;
+  font-style: sans-serif;
+}
+
+.btn{
+  display: inline;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 5rem;
+  background: #C06014;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 .5rem 1 rem rgba(0,0,0,.1);
+  
+}
+
+
+.btn:hover {
+  background: #944b0f ;
+ }
+
+
+@media(max-width:1200px){
+  html{
+    font-size: 55%;
+  }
+}
+
+@media(max-width:768px){
+  .inicio{
+    flex-flow: column-reverse;
+    
+  }
+
+  .inicio.image img{
+    width: 100%;
+  }
+
+  .inicio .content h3{
+    font-size: 3.6rem;
+  }
+  .inicio .content p{
+    font-size: 1.5rem;
+  }
+
+}
+
+@media(max-width:450px){
+  html{
+    font-size: 49%;
+    
+  }
+
+  .inicio .content h3 span:first-child{
+    margin-right: 20px;
+    text-align: center;
+    font-size: 3.5rem;
+    color: #C06014;
+    text-transform: uppercase;
+  }
+
+  .inicio .content p{
+    font-size: 1.3rem;
+    color: #536162;
+    font-style: sans-serif;
+  }
+
+  .btn{
+    display: inline;
+    margin-top: 1rem;
+    padding: 0.5rem 2rem;
+    border-radius: 5rem;
+    background: #C06014;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 .5rem 1 rem rgba(0,0,0,.1);
+    transition: all 0.3s linear;
+  }
+  
+}

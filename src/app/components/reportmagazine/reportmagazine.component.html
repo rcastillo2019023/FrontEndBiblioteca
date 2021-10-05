@@ -1,0 +1,79 @@
+
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="content">
+      <div class="header" style="background: #fafafa; margin-bottom: 20px;">
+        <div class="titulo">
+          <h1>Revistas</h1>
+      </div>
+      
+        <div class="buttons">
+          <button type="button"   class="crear"  routerLink="/magazine"routerLinkActive="active">Regresar</button>
+            <button type="button"   class="crear" (click)="pdfCreate()">Generar PDF</button>
+          </div>
+      </div>
+        
+      <div  id="exportPDf" class="content-grafics">
+        <div class="table-grafics">
+          <table class="table-graf">
+              <div  class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource" matSort>
+                    
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="title">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
+                      <td mat-cell *matCellDef="let element" > {{element.title}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="author">
+                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>Autor</th>
+                      <td mat-cell *matCellDef="let element" > {{element.author}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="record">
+                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>Prestamos</th>
+                      <td mat-cell *matCellDef="let element"> {{element.record}} </td>
+                    </ng-container>
+                  
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                    
+                  
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[6,12,18]"
+                             showFirstLastButtons 
+                             aria-label="Select page of periodic elements">
+              </mat-paginator>
+                </div>
+          </table>
+    
+        </div>
+        
+      <div class="view-grafics" >
+        <canvas class="grafics" baseChart
+          chartType="pie"
+          [data]="chartData"
+          [colors]="chartColors"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [plugins]="chartPlugins"
+          [legend]="chartLegend">
+        </canvas>
+      </div>
+    </div>
+    </div>
+ 
+  </body>
